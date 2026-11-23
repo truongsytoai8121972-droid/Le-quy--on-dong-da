@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b55">
+  <title>10A4 | Lê Quý Đôn – Đống Đa</title>
+  <style>
+    :root {
+      --navy: #102b55;
+      --blue: #1c5da8;
+      --sky: #eaf3ff;
+      --gold: #e4b95f;
+      --ink: #17243a;
+      --muted: #68778d;
+      --white: #fff;
+      --line: #e5edf7;
+      --shadow: 0 14px 38px rgba(16, 43, 85, .10);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #f5f8fc;
+    }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+
+    /* Header & Navigation */
+    header {
+      background: linear-gradient(115deg, #0d2347, #174f91 65%, #2876bb);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    header:after {
+      content: "";
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border: 1px solid #ffffff25;
+      border-radius: 50%;
+      right: -100px;
+      top: -180px;
+      box-shadow: 0 0 0 45px #ffffff0b, 0 0 0 90px #ffffff08;
+    }
+    .nav {
+      max-width: 1160px;
+      margin: auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: .3px;
+    }
+    .crest {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      background: var(--gold);
+      color: #102b55;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+    .navlinks {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+    .navlinks button {
+      background: transparent;
+      border: 0;
+      color: #eaf3ff;
+      padding: 9px 12px;
+      border-radius: 9px;
+    }
+    .navlinks button:hover,
+    .navlinks button.active {
+      background: #ffffff20;
+      color: white;
+    }
+
+    /* Hero Section */
+    .hero {
+      max-width: 1160px;
+      margin: auto;
+      padding: 72px 24px 86px;
+      position: relative;
+      z-index: 1;
+    }
+    .eyebrow {
+      color: #f4d58f;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.02;
+      margin: 15px 0 14px;
+      letter-spacing: -2px;
+    }
+    .hero p {
+      max-width: 620px;
+      color: #d9e8fa;
+      font-size: 17px;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    /* Buttons */
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 17px;
+      font-weight: 750;
+    }
+    .primary { background: var(--gold); color: #102b55; }
+    .outline { background: #ffffff15; color: white; border: 1px solid #ffffff55; }
+    .light { background: white; color: var(--navy); border: 1px solid var(--line); }
+    .small { padding: 8px 11px; font-size: 13px; }
+
+    /* Main Content & Cards */
+    main {
+      max-width: 1160px;
+      margin: -28px auto 0;
+      padding: 0 24px 60px;
+      position: relative;
+      z-index: 2;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .stat, .panel, .feature {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+    .stat { padding: 19px 21px; }
+    .stat b { display: block; color: var(--blue); font-size: 25px; }
+    .stat span { font-size: 13px; color: var(--muted); }
+
+    .section { padding-top: 38px; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 15px;
+      margin-bottom: 17px;
+    }
+    .section-head h2 { font-size: 25px; margin: 0; color: var(--navy); }
+    .section-head p { margin: 5px 0 0; color: var(--muted); font-size: 14px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+    }
+    .panel { padding: 21px; }
+    .panel h3 { margin: 0 0 14px; color: var(--navy); }
+
+    /* Notices & Quick Links */
+    .notice {
+      display: flex;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .notice:last-child { border: 0; padding-bottom: 0; }
+    .dot {
+      width: 9px;
+      height: 9px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin-top: 7px;
+      flex: none;
+    }
+    .notice b { display: block; font-size: 14px; }
+    .notice small { color: var(--muted); }
+
+    .quick {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 11px;
+    }
+    .quick button {
+      border: 1px solid var(--line);
+      background: #f8fbff;
+      border-radius: 13px;
+      padding: 16px;
+      text-align: left;
+      color: var(--navy);
+      font-weight: 750;
+    }
+    .quick button span {
+      display: block;
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    /* Views & Tables */
+    .view { display: none; }
+    .view.active { display: block; }
+    .table-wrap {
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 590px;
+      background: white;
+    }
+    th, td {
+      text-align: left;
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+    th { background: #edf5ff; color: var(--navy); }
+    tr:last-child td { border: 0; }
+    .day { font-weight: 800; color: var(--blue); }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .photo {
+      min-height: 155px;
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      align-items: end;
+      color: white;
+      font-weight: 800;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #174f91, #75b6e8);
+    }
+    .photo:nth-child(2) { background: linear-gradient(135deg, #243d69, #9ab7dc); }
+    .photo:nth-child(3) { background: linear-gradient(135deg, #2b7297, #b4d8e8); }
+    .photo:nth-child(4) { background: linear-gradient(135deg, #31517d, #d0b77c); }
+    .photo:nth-child(5) { background: linear-gradient(135deg, #27638b, #7eadd0); }
+    .photo:nth-child(6) { background: linear-gradient(135deg, #243c65, #a5c5e2); }
+    .photo:before {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      border: 1px solid #ffffff55;
+      border-radius: 50%;
+      right: -30px;
+      top: -65px;
+      box-shadow: 0 0 0 25px #ffffff12;
+    }
+    .photo span { position: relative; }
+
+    /* Forms & Community Messages */
+    .form-row { display: grid; gap: 10px; margin: 12px 0; }
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #dbe5f1;
+      border-radius: 10px;
+      background: white;
+      color: var(--ink);
+    }
+    textarea { min-height: 95px; resize: vertical; }
+    .messages { display: grid; gap: 10px; margin-top: 16px; }
+    .message { padding: 13px; border-radius: 12px; background: #f1f6fd; }
+    .message b { color: var(--navy); }
+    .message p { margin: 5px 0 0; white-space: pre-wrap; }
+
+    /* Admin & Footer */
+    .admin-box { max-width: 520px; }
+    .hint { font-size: 12px; color: var(--muted); line-height: 1.6; }
+    .admin-actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+    footer {
+      background: #0d2347;
+      color: #c8d9ed;
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 13px;
+    }
+    footer b { color: #f4d58f; }
+    .toast {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #102b55;
+      color: white;
+      padding: 11px 16px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      display: none;
+      z-index: 10;
+      font-size: 13px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 760px) {
+      .nav { align-items: flex-start; flex-direction: column; }
+      .navlinks { width: 100%; overflow: auto; flex-wrap: nowrap; }
+      .navlinks button { white-space: nowrap; }
+      .hero { padding: 55px 22px 72px; }
+      .grid { grid-template-columns: 1fr; }
+      .stats { gap: 8px; }
+      .stat { padding: 14px; }
+      .stat b { font-size: 21px; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      main { padding-left: 16px; padding-right: 16px; }
+      .section-head { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 390px) {
+      .gallery { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .hero h1 { letter-spacing: -1px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="brand">
+        <div class="crest">10A4</div>
+        <div>10A4 <span style="color:#f4d58f">LÊ QUÝ ĐÔN</span></div>
+      </div>
+      <div class="navlinks" id="navlinks">
+        <button class="active" data-view="home">Trang chủ</button>
+        <button data-view="schedule">Thời khóa biểu</button>
+        <button data-view="news">Bảng tin</button>
+        <button data-view="gallery">Thư viện ảnh</button>
+        <button data-view="community">Góc giao lưu</button>
+        <button data-view="admin">Quản trị</button>
+      </div>
+    </nav>
+    <div class="hero">
+      <div class="eyebrow">THPT LÊ QUÝ ĐÔN · ĐỐNG ĐA · HÀ NỘI</div>
+      <h1>Một tập thể.<br><span style="color:#f4d58f">Một thanh xuân.</span></h1>
+      <p>Chào mừng đến với không gian trực tuyến của tập thể lớp 10A4 — nơi lưu giữ thông báo, lịch học và những khoảnh khắc đáng nhớ.</p>
+      <div class="hero-actions">
+        <button class="btn primary" onclick="showView('schedule')">Xem thời khóa biểu</button>
+        <button class="btn outline" onclick="showView('gallery')">Khám phá thư viện ảnh</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="stats">
+      <div class="stat"><b>10A4</b><span>Tập thể lớp</span></div>
+      <div class="stat"><b>2026–2027</b><span>Năm học</span></div>
+      <div class="stat"><b>Đoàn kết</b><span>Cùng học tập và phát triển</span></div>
+    </section>
+
+    <!-- Trang chủ -->
+    <section class="view active" id="home">
+      <div class="section-head">
+        <div>
+          <h2>Không gian lớp 10A4</h2>
+          <p>Mọi thông tin cần thiết được tập hợp tại đây.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="panel">
+          <h3><span style="color:#d5a947">●</span> Tin mới của lớp</h3>
+          <div id="homeNotices"></div>
+        </div>
+        <div class="panel">
+          <h3>Truy cập nhanh</h3>
+          <div class="quick">
+            <button onclick="showView('schedule')">Thời khóa biểu<span>Lịch học trong tuần</span></button>
+            <button onclick="showView('news')">Bảng tin<span>Thông báo của lớp</span></button>
+            <button onclick="showView('gallery')">Thư viện ảnh<span>Kỷ niệm tập thể</span></button>
+            <button onclick="showView('community')">Góc giao lưu<span>Chia sẻ lời nhắn</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Thời khóa biểu -->
+    <section class="view" id="schedule">
+      <div class="section section-head">
+        <div>
+          <h2>Thời khóa biểu</h2>
+          <p>Dữ liệu mẫu — ban cán sự có thể cập nhật sau khi đăng nhập quản trị.</p>
+        </div>
+        <button class="btn light small" onclick="window.print()">In thời khóa biểu</button>
+      </div>
+      <div class="panel">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Buổi</th>
+                <th>Tiết</th>
+                <th>Thứ 2</th>
+                <th>Thứ 3</th>
+                <th>Thứ 4</th>
+                <th>Thứ 5</th>
+                <th>Thứ 6</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="5" class="day">Sáng</td>
+                <td>1</td><td>Toán</td><td>Ngữ văn</td><td>Tiếng Anh</td><td>Vật lí</td><td>Toán</td>
+              </tr>
+              <tr>
+                <td>2</td><td>Toán</td><td>Ngữ văn</td><td>Tiếng Anh</td><td>Vật lí</td><td>Hóa học</td>
+              </tr>
+              <tr>
+                <td>3</td><td>Tiếng Anh</td><td>Lịch sử</td><td>Toán</td><td>Ngữ văn</td><td>Sinh học</td>
+              </tr>
+              <tr>
+                <td>4</td><td>GD Kinh tế &amp; PL</td><td>Địa lí</td><td>Tin học</td><td>Ngữ văn</td><td>Tiếng Anh</td>
+              </tr>
+              <tr>
+                <td>5</td><td>HĐ trải nghiệm</td><td>Thể dục</td><td>Địa lí</td><td>GDQP-AN</td><td>Sinh hoạt</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="hint">Lưu ý: Đây là thời khóa biểu minh họa, không phải lịch chính thức của trường. Hãy thay bằng lịch do giáo viên/nhà trường cung cấp.</p>
+      </div>
+    </section>
+
+    <!-- Bảng tin -->
+    <section class="view" id="news">
+      <div class="section section-head">
+        <div>
+          <h2>Bảng tin lớp</h2>
+          <p>Cập nhật hoạt động và thông báo chung.</p>
+        </div>
+      </div>
+      <div class="panel" id="newsList"></div>
+    </section>
+
+    <!-- Thư viện ảnh -->
+    <section class="view" id="gallery">
+      <div class="section section-head">
+        <div>
+          <h2>Thư viện ảnh</h2>
+          <p>Khu vực trưng bày ảnh hoạt động của tập thể 10A4.</p>
+        </div>
+      </div>
+      <div class="gallery">
+        <div class="photo"><span>Ngày đầu năm học</span></div>
+        <div class="photo"><span>Giờ học đáng nhớ</span></div>
+        <div class="photo"><span>Hoạt động tập thể</span></div>
+        <div class="photo"><span>Khoảnh khắc sân trường</span></div>
+        <div class="photo"><span>Cùng nhau cố gắng</span></div>
+        <div class="photo"><span>Kỷ niệm 10A4</span></div>
+      </div>
+      <p class="hint">Ảnh đang là ô minh họa. Chỉ đăng ảnh thật khi đã được người xuất hiện trong ảnh đồng ý.</p>
+    </section>
+
+    <!-- Góc giao lưu -->
+    <section class="view" id="community">
+      <div class="section section-head">
+        <div>
+          <h2>Góc giao lưu</h2>
+          <p>Gửi lời nhắn tích cực tới tập thể lớp.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <form id="messageForm">
+          <div class="form-row">
+            <label for="nickname">Tên hiển thị (có thể dùng biệt danh)</label>
+            <input id="nickname" maxlength="24" placeholder="Ví dụ: Một thành viên 10A4" required>
+          </div>
+          <div class="form-row">
+            <label for="messageText">Lời nhắn</label>
+            <textarea id="messageText" maxlength="300" placeholder="Viết lời nhắn thân thiện..." required></textarea>
+          </div>
+          <button class="btn primary" type="submit">Gửi lời nhắn</button>
+        </form>
+        <div class="messages" id="messages"></div>
+        <p class="hint">Lời nhắn chỉ được lưu trên trình duyệt của thiết bị này trong bản demo; không phải phòng chat trực tuyến.</p>
+      </div>
+    </section>
+
+    <!-- Quản trị -->
+    <section class="view" id="admin">
+      <div class="section section-head">
+        <div>
+          <h2>Khu vực quản trị</h2>
+          <p>Dành cho ban cán sự lớp trong bản demo.</p>
+        </div>
+      </div>
+      <div class="panel admin-box" id="loginPanel">
+        <h3>Đăng nhập quản trị</h3>
+        <form id="loginForm">
+          <div class="form-row">
+            <label for="adminPass">Mật khẩu demo</label>
+            <input id="adminPass" type="password" placeholder="Nhập mật khẩu" required>
+          </div>
+          <button class="btn primary" type="submit">Đăng nhập</button>
+        </form>
+        <p class="hint">Mật khẩu thử: <b>10a4demo</b>. Đây chỉ là đăng nhập minh họa ở phía trình duyệt, không bảo vệ dữ liệu thật.</p>
+      </div>
+
+      <div class="panel admin-box" id="adminPanel" style="display:none">
+        <h3>Thêm thông báo</h3>
+        <form id="noticeForm">
+          <div class="form-row">
+            <label for="noticeTitle">Tiêu đề</label>
+            <input id="noticeTitle" maxlength="80" required>
+          </div>
+          <div class="form-row">
+            <label for="noticeBody">Nội dung</label>
+            <textarea id="noticeBody" maxlength="400" required></textarea>
+          </div>
+          <button class="btn primary" type="submit">Đăng lên bảng tin</button>
+        </form>
+        <div class="admin-actions">
+          <button class="btn light small" onclick="resetDemo()">Khôi phục dữ liệu mẫu</button>
+          <button class="btn light small" onclick="logout()">Đăng xuất</button>
+        </div>
+        <p class="hint">Bài đăng demo lưu trên trình duyệt hiện tại. Muốn nhiều người cùng xem/cập nhật cần triển khai máy chủ và cơ sở dữ liệu.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <b>10A4 · LÊ QUÝ ĐÔN</b><br>
+    Đống Đa, Hà Nội · Website cộng đồng lớp học (bản demo)<br>
+    <span style="opacity:.7">Không phải website chính thức của nhà trường.</span>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const defaults = [
+      {
+        title: "Chào mừng đến với website 10A4",
+        body: "Đây là không gian trực tuyến để cập nhật thông tin và lưu giữ kỷ niệm của lớp.",
+        date: "23/11/2026"
+      },
+      {
+        title: "Cùng xây dựng tập thể đoàn kết",
+        body: "Hãy sử dụng góc giao lưu một cách văn minh, tích cực và tôn trọng mọi thành viên.",
+        date: "23/11/2026"
+      },
+      {
+        title: "Kiểm tra thời khóa biểu",
+        body: "Thời khóa biểu hiện tại chỉ là dữ liệu minh họa. Vui lòng đối chiếu thông báo chính thức từ giáo viên.",
+        date: "23/11/2026"
+      }
+    ];
+
+    let notices = JSON.parse(localStorage.getItem("10a4_notices") || "null") || defaults;
+    let notes = JSON.parse(localStorage.getItem("10a4_messages") || "[]");
+
+    function safe(s) {
+      return String(s).replace(/[&<>"']/g, c => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[c]));
+    }
+
+    function renderNotices() {
+      const markup = notices.map(n => `
+        <div class="notice">
+          <i class="dot"></i>
+          <div>
+            <b>${safe(n.title)}</b>
+            <small>${safe(n.date || "Mới cập nhật")}</small>
+            <div style="font-size:13px;margin-top:5px;line-height:1.5">${safe(n.body)}</div>
+          </div>
+        </div>
+      `).join("");
+      document.getElementById("homeNotices").innerHTML = markup;
+      document.getElementById("newsList").innerHTML = markup || "<p>Chưa có thông báo.</p>";
+    }
+
+    function renderMessages() {
+      document.getElementById("messages").innerHTML = notes.slice().reverse().map(m => `
+        <div class="message">
+          <b>${safe(m.name)}</b>
+          <p>${safe(m.text)}</p>
+          <small style="color:#68778d">${safe(m.date)}</small>
+        </div>
+      `).join("") || "<p class='hint'>Chưa có lời nhắn. Hãy là người đầu tiên gửi lời chào!</p>";
+    }
+
+    function showView(id) {
+      document.querySelectorAll(".view").forEach(v => v.classList.toggle("active", v.id === id));
+      document.querySelectorAll(".navlinks button").forEach(b => b.classList.toggle("active", b.dataset.view === id));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.querySelectorAll("[data-view]").forEach(b =>
+      b.addEventListener("click", () => showView(b.dataset.view))
+    );
+
+    document.getElementById("messageForm").addEventListener("submit
